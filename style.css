@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100dvh;
+}
+
+.white {
+  height: 10rem;
+  width: 2rem;
+  border: 1px solid #000;
+  position: relative;
+}
+
+.black {
+  height: 5rem;
+  width: 1rem;
+  background-color: black;
+  position: absolute;
+  left: 1.5rem;
+  z-index: 1;
+}
+
+.clavier {
+  display: flex;
+  position: relative;
+  height: 10rem;
+}
+
+.active {
+  background-color: blue;
+}
