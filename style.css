@@ -31,6 +31,7 @@ body {
   position: absolute;
   left: 1.5rem;
   z-index: 1;
+  border: 1px solid black;
 }
 
 .clavier {
@@ -41,4 +42,16 @@ body {
 
 .active {
   background-color: blue;
+}
+
+.note {
+  display: none;
+}
+
+.next {
+  background-color: greenyellow;
+}
+
+.error {
+  background-color: red;
 }

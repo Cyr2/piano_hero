@@ -1,4 +1,6 @@
 const app = document.getElementById('app');
+const suite = [5, 9, 1, 24, 12, 7, 1, 17, 20, 21];
+let interval;
 
 function start(){
   const clavier = document.createElement('div');
@@ -35,7 +37,7 @@ function start(){
 }
 
 function initEvent(){
-
+  nextNote()
   function midiMessageReceived(event) {
     const NOTE_ON = 9;
     const NOTE_OFF = 8
@@ -47,16 +49,21 @@ function initEvent(){
         if (noteStartTime) {
           const note = document.querySelector('.note' + (pitch - 47));
           if(note){
-            console.log(pitch- 47);
-            note.classList.remove('active');
+            if(note.classList.contains('error')){
+              note.classList.remove('error');
+            }
           }
           notesOn.delete(pitch);
         }
     } else if (cmd === NOTE_ON) { 
         const note = document.querySelector('.note' + (pitch - 47));
         if(note){
-          console.log(pitch- 47);
-          note.classList.add('active');
+          if(note.classList.contains('next') && suite.length > 0){
+            note.classList.remove('next');
+            nextNote();
+          } else {
+            note.classList.add('error');
+          }
         }
         notesOn.set(pitch, timestamp);
     }
@@ -95,6 +102,12 @@ function initEvent(){
       input.addEventListener('midimessage', midiMessageReceived);
     }
   }
+}
+
+function nextNote(){
+  suite.pop()
+  const note = document.querySelector('.note' + suite[suite.length - 1]);
+  note.classList.add('next');
 }
 
 start();
